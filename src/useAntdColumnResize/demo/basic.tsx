@@ -49,7 +49,7 @@ const App = () => {
   ];
   const { resizableColumns, components, tableWidth, resetColumns } =
     useAntdColumnResize(() => {
-      return { columns };
+      return { columns, onResizeEnd: (columns: any) => console.log('onResizeEnd', columns) };
     }, []);
 
   return (

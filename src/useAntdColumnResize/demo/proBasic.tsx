@@ -48,8 +48,10 @@ const App = () => {
     },
   ];
 
-  const { resizableColumns, components, tableWidth } = useAntdColumnResize(() => { return { columns } }, []);;
-
+  const { resizableColumns, components, tableWidth } =
+    useAntdColumnResize(() => {
+      return { columns, onResizeEnd: (columns: any) => console.log('onResizeEnd', columns) };
+    }, []);
   return (
     <div className="app">
       <ProTable
