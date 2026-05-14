@@ -100,11 +100,12 @@ useAntdColumnResize(setup: () => resizeDataType<Column>, dependencies: any[])
 | setup        | get Column config | `() => resizeDataType<Column>` | -      |
 | dependencies | dependencies      | `any[]`                        | -      |
 
-| Parameter | Description   | Type                        | Default Value |
-| --------- | ------------- | --------------------------- | ------------- |
-| columns   | Column config | object[] antd table columns | -             |
-| minWidth  | Minimum width | number                      | 120           |
-| maxWidth  | Maximum width | number                      | 2000          |
+| Parameter   | Description                 | Type                                      | Default Value |
+| ---------   | -------------              | ---------------------------               | ------------- |
+| columns     | Column config               | object[] antd table columns              | -             |
+| minWidth    | Minimum width               | number                                   | 120           |
+| maxWidth    | Maximum width               | number                                   | 2000          |
+| onResizeEnd | Callback when resize ends   | `(columns: Column[]) => void`            | -             |
 
 ## Notes
 

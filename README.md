@@ -109,11 +109,12 @@ useAntdColumnResize(setup: () => resizeDataType<Column>, dependencies: any[])
 
 ### resizeDataType<Column> setup 返回数据类型
 
-| 参数     | 说明     | 类型                        | 默认值 |
-| -------- | -------- | --------------------------- | ------ |
-| columns  | 列配置   | object[] antd table columns | -      |
-| minWidth | 最小宽度 | number                      | 120    |
-| maxWidth | 最大宽度 | number                      | 2000   |
+| 参数         | 说明                 | 类型                                           | 默认值 |
+| --------    | --------            | ---------------------------                    | ------ |
+| columns      | 列配置               | object[] antd table columns                    | -      |
+| minWidth     | 最小宽度             | number                                         | 120    |
+| maxWidth     | 最大宽度             | number                                         | 2000   |
+| onResizeEnd  | 拖动结束回调函数     | `(columns: Column[]) => void`                  | -      |
 
 ## useAntdColumnResize 返回数据
 
