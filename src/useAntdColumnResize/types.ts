@@ -14,6 +14,7 @@ export type resizeDataType<Column> = {
   minWidth?: number;
   maxWidth?: number;
   onResizeEnd?: (updatedColumns: any[] | undefined) => void;
+  columnsState?: any;
 };
 
 export interface ResizableColumnProps<Column> {

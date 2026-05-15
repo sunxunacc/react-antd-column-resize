@@ -2,24 +2,27 @@ import { useRef, useMemo, useState, useCallback } from 'react';
 import { Column, resizeDataType } from '../types';
 import { INTERNAL_KEY } from '../constant';
 
-const useColumns = ({ columns, minWidth = 120, maxWidth = 2000, onResizeEnd }: resizeDataType<Column>) => {
+const useColumns = ({ columns, minWidth = 120, maxWidth = 2000, onResizeEnd, columnsState }: resizeDataType<Column>) => {
 
   const columnMap = useRef(new Map<string | number, number>()).current;
 
   const [resizableColumns, setResizableColumns] = useState<Column[]>([]);
 
-  const calculateWidth = useCallback((column: Column): number => {
+  const calculateWidth = useCallback((column: Column, columnsState: any): number => {
+    if (columnsState && !columnsState[column.dataIndex]?.show) {
+      return 0;
+    }
     const isLeaf = Array.isArray(column?.children);
     let totalWidth = isLeaf ? 0 : Number((column?.width ?? Number(minWidth + 15)));
     if (isLeaf) {
-      totalWidth = + (column?.children as [])?.reduce((sum, child) => sum + calculateWidth(child), 0);
+      totalWidth = + (column?.children as [])?.reduce((sum, child) => sum + calculateWidth(child, columnsState), 0);
     }
     return totalWidth;
   }, [minWidth])
 
   const tableWidth = useMemo(() => {
-    return resizableColumns?.reduce((sum, column) => sum + calculateWidth(column), 34)
-  }, [resizableColumns, calculateWidth]);
+    return resizableColumns?.reduce((sum, column) => sum + calculateWidth(column, columnsState), 34)
+  }, [resizableColumns, calculateWidth, columnsState]);
 
 
   const handleResizableColumns = useCallback((key: string | number, interWidth: number) => {
